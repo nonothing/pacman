@@ -9,17 +9,22 @@ public class SoundController {
 
     private Sound sound;
     private Sound backgroundSound;
+    private Sound menu;
     private boolean isSound;
    
     public SoundController() {
         sound = new Sound();
-        backgroundSound = new Sound();
+
+        
     }
     
     public void playBackground(){
-        backgroundSound.play(Wave.sirenSound, true, isSound);
+        if(backgroundSound == null){
+            backgroundSound = new Sound();
+            backgroundSound.play(Wave.sirenSound, true, true);
+        }
     }
-    
+        
     private void eatPoint(World world){
         if(world.eatPoint()){
             sound.play(Wave.chomp, false, isSound); 
@@ -50,17 +55,30 @@ public class SoundController {
     public void stop() {
         if (backgroundSound != null) {
             backgroundSound.stop();
+            backgroundSound = null;
         }
         if (sound != null) {
             sound.stop();
         }
+        if (menu != null){
+            menu.stop();
+            menu = null;
+            }
     }
     
     public void playMenu(){
-        sound.play(Wave.menuSound, true, isSound);
+        if(menu == null){
+        menu = new Sound();
+        menu.play(Wave.menuSound, true, isSound);
+        }
     }
     
+     
     public void setSound(boolean isSound){
         this.isSound = isSound;
+    }
+    
+    public boolean getSound(){
+        return isSound;
     }
 }
