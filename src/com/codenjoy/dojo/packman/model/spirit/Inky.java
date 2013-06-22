@@ -20,7 +20,7 @@ public class Inky extends Spirit {
 
 
     @Override
-    public void ai(World world) {
+    public void go(World world) {
         switch (getState()) {
         case ATTACK:
             findPathAttack(world, doubleVectorBetweenTwoPoints(findPathTwoStep(world), world.getSpirits().get(0) ), this);

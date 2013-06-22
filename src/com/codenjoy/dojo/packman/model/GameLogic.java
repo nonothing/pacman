@@ -41,7 +41,7 @@ public class GameLogic {
                 
                 for (int i = 0; i < world.getSpirits().size() - leftSpirit; i++) {
                     if (world.getSpirits().get(i).getState() == State.ATTACK)
-                        world.getSpirits().get(i).ai(world);
+                        world.getSpirits().get(i).go(world);
                 }
                 if (world.getPlayer().getState() == State.ATTACK){
                     leftTime = true;
@@ -55,7 +55,7 @@ public class GameLogic {
             if (!isPause) {
                 for (int i = 0; i < world.getSpirits().size() - leftSpirit; i++) {
                     if (world.getSpirits().get(i).getState() == State.DEFENCE){
-                        world.getSpirits().get(i).ai(world);
+                        world.getSpirits().get(i).go(world);
                         world.getSpirits().get(i).setDefence(leftDefenceSpirit);
                     }
                 }
@@ -68,7 +68,7 @@ public class GameLogic {
             if (!isPause) {
                 for (int i = 0; i < world.getSpirits().size() - leftSpirit; i++) {
                     if (world.getSpirits().get(i).getState() == State.DEAD)
-                        world.getSpirits().get(i).ai(world);
+                        world.getSpirits().get(i).go(world);
                 }
             }
         }

@@ -17,7 +17,7 @@ public class Clyde extends Spirit {
     }
 
     @Override
-    public void ai(World world) {
+    public void go(World world) {
         switch (getState()) {
         case ATTACK:
             AIattack(world);

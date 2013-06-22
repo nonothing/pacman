@@ -19,7 +19,7 @@ public class Pinky extends Spirit {
     }
 
     @Override
-    public void ai(World world) {
+    public void go(World world) {
         switch (getState()) {
         case ATTACK:
             findPathAttack(world, findPathFourStep(world), this);

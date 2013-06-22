@@ -48,6 +48,7 @@ public class WorldController implements KeyListener, ActionListener {
         this.view.setVisible(true);
         logic.setPause(false);
         soundController.playBackground();
+        
         if (world.isVictory()) {
             world.newGame();
         }
@@ -79,7 +80,6 @@ public class WorldController implements KeyListener, ActionListener {
                 System.exit(0);
             }
             break;
-
         case KeyEvent.VK_ESCAPE:
             pause();
             hide();

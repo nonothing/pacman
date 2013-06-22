@@ -1,16 +1,11 @@
 package com.codenjoy.dojo.packman.model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.codenjoy.dojo.packman.model.Brick;
 import com.codenjoy.dojo.packman.model.Player;
-import com.codenjoy.dojo.packman.model.spirit.Blinky;
-import com.codenjoy.dojo.packman.model.spirit.Clyde;
-import com.codenjoy.dojo.packman.model.spirit.Inky;
-import com.codenjoy.dojo.packman.model.spirit.Pinky;
-import com.codenjoy.dojo.packman.model.spirit.Spirit;
+import com.codenjoy.dojo.packman.model.spirit.*;
 import com.codenjoy.dojo.packman.view.Texture;
 
 public class World {

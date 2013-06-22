@@ -29,9 +29,7 @@ public class MenuController implements KeyListener, ActionListener{
         this.menu = menu;
         this.mainTimer = new Timer(50, this);
     }
-    
-
-    
+        
     public void startGame(){
         if(view.getFrame() == null){
         view.init(menu);
@@ -59,10 +57,8 @@ public class MenuController implements KeyListener, ActionListener{
     }
     
     public void createGame() {
-        if(menu.getSound())
-        soundController.stop();
         hide();
- 
+        soundController.stop();
         view.setVisibleFrame(false);
         if(worldController == null){
         worldController = new WorldController(
@@ -90,6 +86,7 @@ public class MenuController implements KeyListener, ActionListener{
                 break;
             case 1:
                 soundController.setSound(menu.isSound());
+                soundController.stop();
                 soundController.playMenu();
                 break;
             case 2:

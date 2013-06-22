@@ -30,7 +30,7 @@ public abstract class Spirit extends WorldObject {
         setCountStep(6);
     }
     
-    public abstract void ai(World world);
+    public abstract void go(World world);
     public abstract Texture left();
     public abstract Texture right();
     public abstract Texture down();
