@@ -14,8 +14,6 @@ public class SoundController {
    
     public SoundController() {
         sound = new Sound();
-
-        
     }
     
     public void playBackground(){
@@ -73,7 +71,6 @@ public class SoundController {
         }
     }
     
-     
     public void setSound(boolean isSound){
         this.isSound = isSound;
     }

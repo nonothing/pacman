@@ -1,23 +1,21 @@
 package com.codenjoy.dojo.packman.model.spirit;
 
-import com.codenjoy.dojo.packman.model.Player;
 import com.codenjoy.dojo.packman.model.Point;
 import com.codenjoy.dojo.packman.model.World;
 import com.codenjoy.dojo.packman.model.spirit.Spirit;
 import com.codenjoy.dojo.packman.view.Texture;
 
-
 public class Clyde extends Spirit {
-    
-    private static final Point START_POINT   = new Point(7, 11);
+
+    private static final Point START_POINT = new Point(7, 11);
     private static final Point DEFENCE_POINT = new Point(2, 22);
-    
+
     public Clyde() {
         super(START_POINT, Texture.clydeUp);
     }
 
     @Override
-    public void go(World world) {
+    public void ai(World world) {
         switch (getState()) {
         case ATTACK:
             AIattack(world);
@@ -31,19 +29,19 @@ public class Clyde extends Spirit {
         }
         onMove(world);
     }
-    
-    
-    private void AIattack(World world){
-        int[][] map = world.getMap().getMap();
+
+    private void AIattack(World world) {
+        maps.potencialMap(world.getPlayer().getPosition(), this, world.getBricks());
+        
+        int[][] map = maps.getMap();
         int x = getPosition().getX() / getSize();
         int y = getPosition().getY() / getSize();
         int step = map[x][y];
 
         if (step <= 9) {
-            findPathAttack(world, new Player(new Point(1, 1),
-                    Texture.none),this);
+            findPathAttack(world, new Point(1, 1), this);
         } else {
-            findPathAttack(world, world.getPlayer(),this);
+            findPathAttack(world, world.getPlayer().getPosition(), this);
         }
     }
 
@@ -66,7 +64,5 @@ public class Clyde extends Spirit {
     public Texture up() {
         return Texture.clydeUp;
     }
-
-
 
 }

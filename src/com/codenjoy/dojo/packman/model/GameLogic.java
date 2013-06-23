@@ -10,14 +10,15 @@ public class GameLogic {
     private int second;
     private boolean isPause;
     private boolean leftDefenceSpirit;
-    
-    public void setPause(boolean isPause){
+
+    public void setPause(boolean isPause) {
         this.isPause = isPause;
     }
 
-    public boolean getPause(){
+    public boolean getPause() {
         return isPause;
     }
+
     public GameLogic(World world) {
         this.world = world;
         leftSpirit = 4;
@@ -38,12 +39,12 @@ public class GameLogic {
     TimerTask speedAtack = new TimerTask() {
         public void run() {
             if (!isPause) {
-                
+
                 for (int i = 0; i < world.getSpirits().size() - leftSpirit; i++) {
                     if (world.getSpirits().get(i).getState() == State.ATTACK)
                         world.getSpirits().get(i).go(world);
                 }
-                if (world.getPlayer().getState() == State.ATTACK){
+                if (world.getPlayer().getState() == State.ATTACK) {
                     leftTime = true;
                 }
             }
@@ -54,7 +55,7 @@ public class GameLogic {
         public void run() {
             if (!isPause) {
                 for (int i = 0; i < world.getSpirits().size() - leftSpirit; i++) {
-                    if (world.getSpirits().get(i).getState() == State.DEFENCE){
+                    if (world.getSpirits().get(i).getState() == State.DEFENCE) {
                         world.getSpirits().get(i).go(world);
                         world.getSpirits().get(i).setDefence(leftDefenceSpirit);
                     }
@@ -85,21 +86,21 @@ public class GameLogic {
             }
         }
     };
-    
+
     TimerTask taskBonus = new TimerTask() {
         public void run() {
             if (!isPause) {
                 if (leftTime) {
                     second++;
-                    if(second >=8 && second % 2 == 0){
-                        leftDefenceSpirit=true;
-                    }else{
-                        leftDefenceSpirit=false;
+                    if (second >= 8 && second % 2 == 0) {
+                        leftDefenceSpirit = true;
+                    } else {
+                        leftDefenceSpirit = false;
                     }
-                    
+
                     if (second == 12) {
                         world.attackNPC();
-                        leftDefenceSpirit=false;
+                        leftDefenceSpirit = false;
                         second = 0;
                         leftTime = false;
                     }
@@ -107,7 +108,6 @@ public class GameLogic {
             }
         }
     };
-    
 
     public void startSpirit() {
         leftSpirit = 4;

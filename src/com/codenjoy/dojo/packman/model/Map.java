@@ -9,24 +9,22 @@ public class Map {
     private int step;
     private int width;
     private int height;
- 
-    
-    Map(int width, int height){
+
+    public Map(int width, int height) {
         this.width = width;
         this.height = height;
-        map = new int [width][height];
+        map = new int[width][height];
     }
-    
-    public void potencialMap(Player player, Spirit spirit, Iterable<? extends WorldObject> object) {
+
+    public void potencialMap(Point point, Spirit spirit, Iterable<? extends WorldObject> object) {
         inverseMap(object);
         int count = 0;
         step = 2;
 
-        map[player.getPosition().getX() / player.getSize()][player.getPosition().getY()
-                / player.getSize()] = 1;
+        map[point.getX() / 30][point.getY() / 30] = 1;
 
-        if (spirit.getState() != State.DEAD){
-        changeMap(spirit);
+        if (spirit.getState() != State.DEAD) {
+            changeMap(spirit);
         }
 
         while (count < 40) {
@@ -64,29 +62,30 @@ public class Map {
 
     private void changeMap(Spirit spirit) {
         if (spirit.getDirection() == Direction.LEFT)
-        map[(int) (spirit.getPosition().getX() / spirit.getSize()) + 1]
-           [(int) spirit.getPosition().getY() / spirit.getSize()] = WALL;
-        
+            map[(spirit.getPosition().getX() / spirit.getSize()) + 1][spirit
+                    .getPosition().getY() / spirit.getSize()] = WALL;
+
         if (spirit.getDirection() == Direction.RIGHT)
-        map[(int) (spirit.getPosition().getX() / spirit.getSize()) - 1]
-           [(int) spirit.getPosition().getY() / spirit.getSize()] = WALL;
-        
-        
+            map[(spirit.getPosition().getX() / spirit.getSize()) - 1][spirit
+                    .getPosition().getY() / spirit.getSize()] = WALL;
+
         if (spirit.getDirection() == Direction.UP)
-        map[(int) spirit.getPosition().getX() / spirit.getSize()]
-           [(int) (spirit.getPosition().getY() / spirit.getSize()) + 1] = WALL;
-        
+            map[spirit.getPosition().getX() / spirit.getSize()][(spirit
+                    .getPosition().getY() / spirit.getSize()) + 1] = WALL;
+
         if (spirit.getDirection() == Direction.DOWN)
-        map[(int) spirit.getPosition().getX() / spirit.getSize()]
-           [(int) (spirit.getPosition().getY() / spirit.getSize()) - 1] = WALL;
+            map[spirit.getPosition().getX() / spirit.getSize()][(spirit
+                    .getPosition().getY() / spirit.getSize()) - 1] = WALL;
     }
-    
+
     public void inverseMap(Iterable<? extends WorldObject> bricks) {
         int row = 0;
         int column = 0;
         for (WorldObject object : bricks) {
-            if (object.getTexture() == Texture.background || object.getTexture() == Texture.point ||
-                    object.getTexture() == Texture.none || object.getTexture() == Texture.bonus) {
+            if (object.getTexture() == Texture.background
+                    || object.getTexture() == Texture.point
+                    || object.getTexture() == Texture.none
+                    || object.getTexture() == Texture.bonus) {
                 map[row][column] = 0;
             } else {
                 map[row][column] = WALL;
@@ -101,8 +100,8 @@ public class Map {
             }
         }
     }
-    
-    public int[][] getMap() { 
+
+    public int[][] getMap() {
         return map;
     }
 }

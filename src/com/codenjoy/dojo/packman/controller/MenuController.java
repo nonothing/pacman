@@ -13,59 +13,54 @@ import com.codenjoy.dojo.packman.model.World;
 import com.codenjoy.dojo.packman.view.MenuRenderer;
 import com.codenjoy.dojo.packman.view.WorldRenderer;
 
+public class MenuController implements KeyListener, ActionListener {
 
-
-public class MenuController implements KeyListener, ActionListener{
-    
     private MenuRenderer view;
     private Menu menu;
-    private Timer mainTimer ;
+    private Timer mainTimer;
     private WorldController worldController;
     private SoundController soundController;
-    
-    public MenuController(Menu menu, MenuRenderer view){
+
+    public MenuController(Menu menu, MenuRenderer view) {
         soundController = new SoundController();
         this.view = view;
         this.menu = menu;
         this.mainTimer = new Timer(50, this);
     }
-        
-    public void startGame(){
-        if(view.getFrame() == null){
-        view.init(menu);
-        this.view.addKeyListener(this);
+
+    public void startGame() {
+        if (view.getFrame() == null) {
+            view.init(menu);
+            this.view.addKeyListener(this);
         }
-        mainTimer.start();  
+        mainTimer.start();
         this.view.setFocusable(true);
         show();
     }
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        view.repaint();  
+        view.repaint();
     }
 
-    public void hide(){
+    public void hide() {
         view.setVisibleFrame(false);
         view.setFocusable(false);
     }
-    
-    public void show(){
+
+    public void show() {
         view.setVisibleFrame(true);
         view.setFocusable(true);
     }
-    
+
     public void createGame() {
         hide();
         soundController.stop();
         view.setVisibleFrame(false);
-        if(worldController == null){
-        worldController = new WorldController(
-                          new World(
-                          new LevelReader("res/lvl_1.txt")), 
-                          new WorldRenderer(),
-                          this, soundController);
+        if (worldController == null) {
+            worldController = new WorldController(new World(new LevelReader(
+                    "res/lvl_1.txt")), new WorldRenderer(), this,
+                    soundController);
         }
         worldController.startGame();
     }
@@ -95,10 +90,9 @@ public class MenuController implements KeyListener, ActionListener{
             }
             break;
         }
-        
+
     }
 
-  
     @Override
     public void keyReleased(KeyEvent arg0) {
     }

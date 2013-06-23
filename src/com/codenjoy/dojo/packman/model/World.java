@@ -15,7 +15,6 @@ public class World {
     private List<Brick> bricks;
     private List<Brick> oldBricks;
     private List<Spirit> spirits;
-    private Map map;
     private int  width;
     private int  height;
     private int countPoint;
@@ -26,7 +25,6 @@ public class World {
         width = level.getWidth();
         height = level.getHeight();
         player = level.getPlayer();
-        map = new Map(width, height);
         spirits = new ArrayList<Spirit>();
 
         newGame();
@@ -34,7 +32,7 @@ public class World {
  
     public void startPointPlayer(){
         player.setState(State.DEFENCE);
-        player.setPosition(new Point(8 ,13),player.getSize());
+        player.setPosition(new Rectangle(8 * player.getSize(), 13 * player.getSize(), player.getSize(), player.getSize()));
     }
     
     public void createSpirit() {
@@ -103,13 +101,13 @@ public class World {
     public void tryToPlayerGo(Direction direction) {
         player.onMove(direction);
 
-        if (!collidesWithLevel(player.getNext())) {
+        if (!collidesWithLevel(player.getBounds())) {
             player.setDirection(direction);
         }
         player.onMove(player.getDirection());
         
-        if (!collidesWithLevel(player.getNext())) {
-            player.setPosition(player.getNext());
+        if (!collidesWithLevel(player.getBounds())) {
+            player.setPosition(player.getBounds());
         }
     }
 
@@ -133,7 +131,7 @@ public class World {
 
     public boolean deadPlayer (){
         for (Spirit spirit : getSpirits()) {
-            if ((spirit.getBounds().intersects(player.getNext()))) {
+            if ((spirit.getBounds().intersects(player.getBounds()))) {
                 if (spirit.getState() == State.ATTACK){
                     player.setState(State.DEAD);
                     player.setLife(player.getLife() - 1);
@@ -146,7 +144,7 @@ public class World {
     
     public boolean deadSpirit(){
         for (Spirit spirit : getSpirits()) {
-            if ((spirit.getBounds().intersects(player.getNext()))) {
+            if ((spirit.getBounds().intersects(player.getBounds()))) {
                 if (player.getState() == State.ATTACK && spirit.getState() != State.DEAD){
                     spirit.setState(State.DEAD);
                     return true;
@@ -186,10 +184,5 @@ public class World {
     public List<Spirit> getSpirits() {
         return spirits;
     }
-    
-    public Map getMap() {
-        return map;
-    }
-
     
 }

@@ -19,7 +19,7 @@ public class Player extends WorldObject{
 	
     public boolean eatPoint(Iterable<Brick> bricks) {
         for (Brick brick : bricks) {
-            if(brick.tryToEat(next))
+            if(brick.tryToEat(bounds))
                 return true;
         }
         return false;
@@ -27,7 +27,7 @@ public class Player extends WorldObject{
     
     public boolean eatBonus(Iterable<Brick> bricks) { 
         for (Brick brick : bricks) {
-            if(brick.tryToBonus(next)){
+            if(brick.tryToBonus(bounds)){
                 state = State.ATTACK;
                 return true;
                 }

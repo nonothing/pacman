@@ -1,8 +1,6 @@
 package com.codenjoy.dojo.packman.model.spirit;
 
-
 import com.codenjoy.dojo.packman.model.Direction;
-import com.codenjoy.dojo.packman.model.Player;
 import com.codenjoy.dojo.packman.model.Point;
 import com.codenjoy.dojo.packman.model.World;
 import com.codenjoy.dojo.packman.model.spirit.Spirit;
@@ -19,7 +17,7 @@ public class Pinky extends Spirit {
     }
 
     @Override
-    public void go(World world) {
+    public void ai(World world) {
         switch (getState()) {
         case ATTACK:
             findPathAttack(world, findPathFourStep(world), this);
@@ -35,10 +33,11 @@ public class Pinky extends Spirit {
         onMove(world);
     }
 
-    private Player findPathFourStep(World world) {
-        world.getMap().potencialMap(world.getPlayer(), this, world.getBricks());
-        Player player = new Player(new Point(0, 0), Texture.none);
-        int[][] map = world.getMap().getMap();
+    private Point findPathFourStep(World world) {
+        maps.potencialMap(world.getPlayer().getPosition(), this, world.getBricks());
+        
+        Point point = new Point();
+        int[][] map = maps.getMap();
         int min = 0;
         int max = 999;
 
@@ -49,28 +48,28 @@ public class Pinky extends Spirit {
                     if (world.getPlayer().getDirection() == Direction.LEFT) {
                         if (max > row) {
                             max = row;
-                            player.setPosition(new Point(row, column),player.getSize());
+                            point = new Point(row, column,getSize());
                         }
                     }
 
                     if (world.getPlayer().getDirection() == Direction.RIGHT) {
                         if (min < row) {
                             min = row;
-                            player.setPosition(new Point(row, column),player.getSize());
+                            point = new Point(row, column,getSize());
                         }
                     }
 
                     if (world.getPlayer().getDirection() == Direction.UP) {
                         if (max > column) {
                             max = column;
-                            player.setPosition(new Point(row, column),player.getSize());
+                            point = new Point(row, column,getSize());
                         }
                     }
 
                     if (world.getPlayer().getDirection() == Direction.DOWN) {
                         if (min < column) {
                             min = column;
-                            player.setPosition(new Point(row, column),player.getSize());
+                            point = new Point(row, column,getSize());
                         }
                     }
 
@@ -78,7 +77,7 @@ public class Pinky extends Spirit {
             }
         }
 
-        return player;
+        return point;
     }
 
     @Override
@@ -100,7 +99,5 @@ public class Pinky extends Spirit {
     public Texture up() {
         return Texture.pinkyUp;
     }
-
-
 
 }

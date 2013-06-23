@@ -36,7 +36,7 @@ public class WorldController implements KeyListener, ActionListener {
         this.mainTimer = new Timer(50, this);
         this.soundController = soundController; 
      }
-     
+
     public void startGame() {
         if (view.getFrame() == null) {
             view.init(world);
@@ -47,8 +47,10 @@ public class WorldController implements KeyListener, ActionListener {
         this.view.setFocusable(true);
         this.view.setVisible(true);
         logic.setPause(false);
-        soundController.playBackground();
-        
+        if (soundController.getSound()) {
+            soundController.playBackground();
+        }
+
         if (world.isVictory()) {
             world.newGame();
         }
