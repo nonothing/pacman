@@ -12,8 +12,8 @@ public class World {
     
     private Player player;
     
-    private List<Brick> bricks;
-    private List<Brick> oldBricks;
+    public List<Brick> bricks;
+    public List<Brick> oldBricks;
     private List<Spirit> spirits;
     private int  width;
     private int  height;
@@ -59,7 +59,7 @@ public class World {
         return false;
     }
 
-    private int generationPoint() {
+    public int generationPoint() {
         int result = 0;
         for (Brick brick : bricks) {
             if (brick.getTexture() == Texture.background) {
@@ -100,7 +100,7 @@ public class World {
     
     public void tryToPlayerGo(Direction direction) {
         player.onMove(direction);
-
+   
         if (!collidesWithLevel(player.getBounds())) {
             player.setDirection(direction);
         }

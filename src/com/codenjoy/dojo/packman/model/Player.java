@@ -15,6 +15,7 @@ public class Player extends WorldObject{
 	public Player(Point position , Texture texture ) {
 	    super(position, texture);
 		setState(State.DEFENCE);
+		life = 3;
 	}
 	
     public boolean eatPoint(Iterable<Brick> bricks) {
