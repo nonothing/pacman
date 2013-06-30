@@ -117,34 +117,24 @@ public abstract class Spirit extends WorldObjectMove {
         countStep++;
     }
 
-    public void findPathAttack(World world, Point point, Spirit spirit) {
-        findDirection(world, point, spirit);
-    }
-
-    public void findPathDefence(World world, Point point, Spirit spirit) {
-        findDirection(world, new Point(point.getX(), point.getY(), getSize()),
-                spirit);
-    }
-
-    private void findDirection(World world, Point point, Spirit spirit) {
+    protected void findDirection(World world, Point point, Spirit spirit) {
+        
         maps.potencialMap(point, spirit, world.getBricks());
         if (getCountStep() == (getSize() / SPEED)) {
             int[][] map = maps.getMap();
-            int x = getPosition().getX() / getSize();
-            int y = getPosition().getY() / getSize();
 
-            int step = map[x][y];
+            int step = map[getPointX()][getPointY()];
 
-            if (map[x - 1][y] < step + 1) {
+            if (map[getPointX() - 1][getPointY()] < step + 1) {
                 setDirection(Direction.LEFT);
             }
-            if (map[x + 1][y] < step + 1) {
+            if (map[getPointX() + 1][getPointY()] < step + 1) {
                 setDirection(Direction.RIGHT);
             }
-            if (map[x][y - 1] < step + 1) {
+            if (map[getPointX()][getPointY() - 1] < step + 1) {
                 setDirection(Direction.UP);
             }
-            if (map[x][y + 1] < step + 1) {
+            if (map[getPointX()][getPointY() + 1] < step + 1) {
                 setDirection(Direction.DOWN);
             }
 
@@ -162,9 +152,5 @@ public abstract class Spirit extends WorldObjectMove {
 
     public void setDefence(boolean isDefence) {
         this.leftDefence = isDefence;
-    }
-
-    public int getSize() {
-        return super.getSize();
     }
 }

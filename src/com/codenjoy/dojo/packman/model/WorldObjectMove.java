@@ -51,4 +51,11 @@ public abstract class WorldObjectMove extends WorldObject{
                 + speedY, getSize(), getSize());
     }
     
+    public int getPointX(){
+        return position.getX() / getSize();
+    }
+    
+    public int getPointY(){
+        return position.getY() / getSize();
+    }
 }

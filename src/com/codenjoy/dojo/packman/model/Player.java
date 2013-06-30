@@ -4,10 +4,8 @@ import com.codenjoy.dojo.packman.model.Brick;
 import com.codenjoy.dojo.packman.view.Texture;
 
 
-
 public class Player extends WorldObjectMove{
     private int life;
-
 
 	public Player(Point position , Texture texture ) {
 	    super(position, texture);

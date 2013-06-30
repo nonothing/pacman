@@ -28,5 +28,9 @@ public class Point {
     public int getY() {
         return y;
     }
+    
+    public Point multiply(int size){
+        return new Point(x, y,size);
+    }
 
 }

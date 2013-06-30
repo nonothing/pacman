@@ -18,13 +18,14 @@ public class Blinky extends Spirit {
     public void ai(World world) {
         switch (getState()) {
         case ATTACK:
-            findPathAttack(world, world.getPlayer().getPosition(), this);
+            findDirection(world, world.getPlayer().getPosition(), this);
             break;
         case DEFENCE:
-            findPathDefence(world, DEFENCE_POINT, this);
+            findDirection(world, DEFENCE_POINT.multiply(getSize()), this);
             break;
         case DEAD:
-            findPathDefence(world, START_POINT, this);
+            findDirection(world, START_POINT.multiply(getSize())
+                    , this);
             break;
         }
 

@@ -20,13 +20,13 @@ public class Pinky extends Spirit {
     public void ai(World world) {
         switch (getState()) {
         case ATTACK:
-            findPathAttack(world, findPathFourStep(world), this);
+            findDirection(world, findPathFourStep(world), this);
             break;
         case DEFENCE:
-            findPathDefence(world, DEFENCE_POINT, this);
+            findDirection(world, DEFENCE_POINT.multiply(getSize()), this);
             break;
         case DEAD:
-            findPathDefence(world, START_POINT, this);
+            findDirection(world, START_POINT.multiply(getSize()), this);
             break;
         }
 

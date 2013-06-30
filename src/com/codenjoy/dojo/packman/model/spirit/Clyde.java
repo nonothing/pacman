@@ -21,27 +21,25 @@ public class Clyde extends Spirit {
             AIattack(world);
             break;
         case DEFENCE:
-            findPathDefence(world, DEFENCE_POINT, this);
+            findDirection(world, DEFENCE_POINT.multiply(getSize()), this);
             break;
         case DEAD:
-            findPathDefence(world, START_POINT, this);
+            findDirection(world, START_POINT.multiply(getSize()), this);
             break;
         }
         onMove(world);
     }
 
-    private void AIattack(World world) {
+    public void AIattack(World world) {
         maps.potencialMap(world.getPlayer().getPosition(), this, world.getBricks());
         
         int[][] map = maps.getMap();
-        int x = getPosition().getX() / getSize();
-        int y = getPosition().getY() / getSize();
-        int step = map[x][y];
+        int step = map[getPointX()][getPointY()];
 
         if (step <= 9) {
-            findPathAttack(world, new Point(1 , 2, getSize()), this);
+            findDirection(world, new Point(1 , 2, getSize()), this);
         } else {
-            findPathAttack(world, world.getPlayer().getPosition(), this);
+            findDirection(world, world.getPlayer().getPosition(), this);
         }
     }
 

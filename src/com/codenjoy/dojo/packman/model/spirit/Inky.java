@@ -22,13 +22,13 @@ public class Inky extends Spirit {
     public void ai(World world) {
         switch (getState()) {
         case ATTACK:
-            findPathAttack(world, doubleVectorBetweenTwoPoints(findPathTwoStep(world), world.getSpirits().get(0).getPosition() ), this);
+            findDirection(world, doubleVectorBetweenTwoPoints(findPathTwoStep(world), world.getSpirits().get(0).getPosition() ), this);
             break;
         case DEFENCE:
-            findPathDefence(world, DEFENCE_POINT, this);
+            findDirection(world, DEFENCE_POINT.multiply(getSize()), this);
             break;
         case DEAD:
-            findPathDefence(world, START_POINT, this);
+            findDirection(world, START_POINT.multiply(getSize()), this);
             break;
         }
         onMove(world);
