@@ -31,7 +31,6 @@ public class Menu {
     public boolean isSound() {
         if (isSound) {
             return isSound = false;
-
         } else {
             return isSound = true;
         }

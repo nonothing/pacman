@@ -36,7 +36,7 @@ public class Pinky extends Spirit {
     private Point findPathFourStep(World world) {
         maps.potencialMap(world.getPlayer().getPosition(), this, world.getBricks());
         
-        Point point = new Point();
+        Point point = new Point(0,0);
         int[][] map = maps.getMap();
         int min = 0;
         int max = 999;

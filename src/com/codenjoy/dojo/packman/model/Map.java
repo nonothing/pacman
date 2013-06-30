@@ -78,7 +78,7 @@ public class Map {
                     .getPosition().getY() / spirit.getSize()) - 1] = WALL;
     }
 
-    public void inverseMap(Iterable<? extends WorldObject> bricks) {
+    private void inverseMap(Iterable<? extends WorldObject> bricks) {
         int row = 0;
         int column = 0;
         for (WorldObject object : bricks) {

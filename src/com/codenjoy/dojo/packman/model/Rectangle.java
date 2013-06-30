@@ -1,10 +1,5 @@
 package com.codenjoy.dojo.packman.model;
 
-/**
- * User: sanja
- * Date: 15.06.13
- * Time: 20:12
- */
 public class Rectangle {
     private final int x;
     private final int y;

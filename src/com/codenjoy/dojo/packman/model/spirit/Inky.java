@@ -62,9 +62,7 @@ public class Inky extends Spirit {
             point[Y] = 1;
         }
 
-        point1 = new Point(point[X], point[Y],30);
-
-        return point1;
+        return new Point(point[X], point[Y],30);
     }
 
 

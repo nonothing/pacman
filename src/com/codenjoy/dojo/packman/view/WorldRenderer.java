@@ -76,6 +76,9 @@ public class WorldRenderer extends JPanel {
         drawGameOver();
     }
 
+    
+
+    
     private void drawVictory() {
         if (world.isVictory()) {
             canvas.setColor(Color.yellow);

@@ -17,9 +17,11 @@ public class Fonts {
         try {
             File file = new File("font/" + filename + ".ttf");
             font = Font.createFont(Font.TRUETYPE_FONT, file); 
-        } catch (FontFormatException | IOException e) {
+        } catch (FontFormatException e) {
             e.printStackTrace();
-        }
+        } catch ( IOException e){
+            e.printStackTrace();
+        } 
         return font;
     }
     

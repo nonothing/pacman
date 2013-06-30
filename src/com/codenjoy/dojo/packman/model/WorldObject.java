@@ -8,7 +8,7 @@ public abstract class WorldObject {
     private static final int SIZE = 30;
 
     private Texture texture;
-    protected Direction direction;
+
     protected Point position;
     protected Rectangle bounds;
 
@@ -18,8 +18,6 @@ public abstract class WorldObject {
         bounds = new Rectangle(position.getX(), position.getY(), SIZE, SIZE);
 
         this.texture = texture;
-
-        direction = Direction.UP;
     }
 
     public int getSize() {
@@ -34,26 +32,8 @@ public abstract class WorldObject {
         return texture;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
     public Rectangle getBounds() {
         return bounds;
-    }
-
-    public void setPosition(Rectangle rect) {
-        this.position = new Point(rect);
-        bounds = rect;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
-    public void setNext(int speedX, int speedY) {
-        this.bounds = new Rectangle(position.getX() + speedX, position.getY()
-                + speedY, SIZE, SIZE);
     }
 
     public void setTexture(Texture texture) {
@@ -66,6 +46,5 @@ public abstract class WorldObject {
 
     public int inverse(int count) {
         return (-1) * count;
-
     }
 }

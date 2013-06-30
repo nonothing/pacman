@@ -39,7 +39,7 @@ public class Clyde extends Spirit {
         int step = map[x][y];
 
         if (step <= 9) {
-            findPathAttack(world, new Point(1, 1), this);
+            findPathAttack(world, new Point(1 , 2, getSize()), this);
         } else {
             findPathAttack(world, world.getPlayer().getPosition(), this);
         }

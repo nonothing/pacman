@@ -5,10 +5,7 @@ import com.codenjoy.dojo.packman.view.Texture;
 
 
 
-public class Player extends WorldObject{
-
-	private static final int SPEED = 5;
-    private State state;
+public class Player extends WorldObjectMove{
     private int life;
 
 
@@ -70,29 +67,6 @@ public class Player extends WorldObject{
         }
     }
     
-
-    
-    public void onMove(Direction direction) {
-        switch (direction) {
-        case RIGHT:setNext(SPEED, 0);         break;
-        case LEFT: setNext(inverse(SPEED), 0);break;
-        case UP:   setNext(0, inverse(SPEED));break;
-        case DOWN: setNext(0, SPEED);         break;
-        }
-    }
-    
-	public int getSpeed(){
-        return SPEED;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
     public int getLife() {
         return life;
     }
